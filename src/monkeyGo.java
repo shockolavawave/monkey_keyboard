@@ -1,6 +1,4 @@
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Random;
+import java.util.*;
 
 public class monkeyGo {
 
@@ -35,7 +33,18 @@ public class monkeyGo {
         this.setRawString(buf.toString());
 
         this.setWords(this.getRawString().split(" "));
+        // sorting length wise
         Arrays.sort(this.getWords(), Comparator.comparingInt(String::length));
+        // removing nulls
+        List<String> li = new ArrayList<>();
+
+        for (String s :
+                this.getWords()) {
+            if ( s != null && s.length() > 0 )
+                li.add(s);
+        }
+
+        this.setWords(li.toArray(new String[0]));
 
     }
 }
