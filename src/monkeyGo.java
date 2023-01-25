@@ -33,8 +33,6 @@ public class monkeyGo {
         this.setRawString(buf.toString());
 
         this.setWords(this.getRawString().split(" "));
-        // sorting length wise
-        Arrays.sort(this.getWords(), Comparator.comparingInt(String::length));
         // removing nulls
         List<String> li = new ArrayList<>();
 
@@ -45,6 +43,9 @@ public class monkeyGo {
         }
 
         this.setWords(li.toArray(new String[0]));
+
+        // sorting length wise
+        Arrays.sort(this.getWords(), Comparator.comparingInt(String::length));
 
     }
 }
