@@ -8,8 +8,22 @@ public class mainClass {
 
         System.out.println("Hello world!");
 
-        System.out.print("Enter character limit: ");
-        int limit = scObj.nextInt();
+
+        int limit = 0;
+        try {
+            System.out.print("Enter character limit (min. 100) : ");
+            limit = scObj.nextInt();
+
+            if (limit < 100)
+                throw new Exception("number too short");
+
+        } catch (NumberFormatException nfe) {
+            System.out.println("Invalid input! Try re-running");
+            System.exit(0);
+        } catch (Exception e) {
+            System.out.println("Limit too short. Try re-running.");
+            System.exit(0);
+        }
 
         monkeyGo bulk =  new monkeyGo(limit); // remote call
 
@@ -23,7 +37,7 @@ public class mainClass {
         ArrayList<String> lengths = new ArrayList<>();
         ArrayList<String> counts = new ArrayList<>();
 
-
+        // counting all words with respect to length
         for (int i = 0, j = 0, cou = 0; j < bufArr.length; i++) {
 
             // i is for length's and counts' length
