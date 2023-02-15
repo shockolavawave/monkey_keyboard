@@ -10,7 +10,6 @@ public class mainClass {
 
         System.out.println("Hello world!");
 
-
         int limit = 0;
         try {
             System.out.print("Enter character limit (min. 100) : ");
@@ -59,7 +58,7 @@ public class mainClass {
         String[] len_final = lengths.toArray(new String[0]);
         String[] cou_final = counts.toArray(new String[0]);
 
-        try (FileWriter fw = new FileWriter("./list.csv")) {
+        try (FileWriter fw = new FileWriter("./" + limit + "_list.csv")) {
 
             for (int i = 0; i < len_final.length; i++)
                 fw.write(len_final[i] + "," + cou_final[i] + "\n");
