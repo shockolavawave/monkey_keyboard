@@ -10,6 +10,7 @@ public class mainClass {
 
         System.out.println("Hello world!");
 
+        // initialising
         int limit = 0;
         try {
             System.out.print("Enter character limit (min. 100) : ");
@@ -26,8 +27,10 @@ public class mainClass {
             System.exit(0);
         }
 
+        // creating an instance
         monkeyGo bulk =  new monkeyGo(limit); // remote call
 
+        // creating ArrayLists
         String[] bufArr = bulk.getWords();
         ArrayList<String> lengths = new ArrayList<>();
         ArrayList<String> counts = new ArrayList<>();
