@@ -1,3 +1,5 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -27,12 +29,6 @@ public class mainClass {
 
         monkeyGo bulk =  new monkeyGo(limit); // remote call
 
-        // printing a word per line
-        for (String s :
-                bulk.getWords()) {
-            System.out.println(s);
-        }
-
         String[] bufArr = bulk.getWords();
         ArrayList<String> lengths = new ArrayList<>();
         ArrayList<String> counts = new ArrayList<>();
@@ -60,8 +56,20 @@ public class mainClass {
 
         } // end of for loop
 
-        for (int i = 0; i < lengths.size(); i++)
-            System.out.println(lengths.get(i) + "   ->   " + counts.get(i));
+        String[] len_final = lengths.toArray(new String[0]);
+        String[] cou_final = counts.toArray(new String[0]);
+
+        try (FileWriter fw = new FileWriter("./list.csv")) {
+
+            for (int i = 0; i < len_final.length; i++)
+                fw.write(len_final[i] + "," + cou_final[i] + "\n");
+
+            System.out.println("file printed successfully!\n" +
+                    "Total words: " + bufArr.length);
+
+        } catch (IOException e) {
+            System.out.println("Something went wrong: " + e.getMessage());
+        }
 
     } // end of main function
 } // end of main clas
