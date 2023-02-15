@@ -10,7 +10,6 @@ public class mainClass {
 
         System.out.println("Hello world!");
 
-        // initialising
         int limit = 0;
         try {
             System.out.print("Enter character limit (min. 100) : ");
@@ -27,7 +26,6 @@ public class mainClass {
             System.exit(0);
         }
 
-        // creating an object to monkeyGo
         monkeyGo bulk =  new monkeyGo(limit); // remote call
 
         String[] bufArr = bulk.getWords();
@@ -50,19 +48,17 @@ public class mainClass {
                     (bufArr[j].length() == Integer.parseInt(lengths.get(i)))) {
                 cou++;
                 j++;
-            } // end of while loop
+            } // of while loop
 
             counts.add(i, Integer.toString(cou));
             cou = 0;
 
         } // end of for loop
 
-        // converting listArrays to String arrays
         String[] len_final = lengths.toArray(new String[0]);
         String[] cou_final = counts.toArray(new String[0]);
 
-        // writing the file using try-out-resources method
-        try (FileWriter fw = new FileWriter("./list.csv")) {
+        try (FileWriter fw = new FileWriter("./" + limit + "_list.csv")) {
 
             for (int i = 0; i < len_final.length; i++)
                 fw.write(len_final[i] + "," + cou_final[i] + "\n");
