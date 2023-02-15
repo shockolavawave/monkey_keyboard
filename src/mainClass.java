@@ -61,6 +61,7 @@ public class mainClass {
         String[] len_final = lengths.toArray(new String[0]);
         String[] cou_final = counts.toArray(new String[0]);
 
+        // try-with-resources helps
         try (FileWriter fw = new FileWriter("./" + limit + "_list.csv")) {
 
             for (int i = 0; i < len_final.length; i++)
