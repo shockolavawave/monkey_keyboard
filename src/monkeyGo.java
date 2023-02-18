@@ -16,7 +16,7 @@ public class monkeyGo {
     public String[] getWords() {    return words;    }
     public void setWords(String[] words) {      this.words = words;    }
 
-    public monkeyGo(int len) {
+    public monkeyGo(int len) throws OutOfMemoryError {
 
         this.setLength(len);
 

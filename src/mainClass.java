@@ -20,58 +20,59 @@ public class mainClass {
             if (limit < 100)
                 throw new Exception("number too short");
 
-        } catch (NumberFormatException nfe) {
-            System.out.println("Invalid input! Try re-running");
-            System.exit(0);
-        } catch (Exception e) {
-            System.out.println("Limit too short. Try re-running.");
+        } catch (Exception e){
+            System.out.println("Something went wrong: " + e.getMessage());
             System.exit(0);
         }
 
-        // creating an instance
-        monkeyGo bulk =  new monkeyGo(limit); // remote call
+        try {
+            // creating an instance
+            monkeyGo bulk =  new monkeyGo(limit); // remote call
 
-        // creating ArrayLists
-        String[] bufArr = bulk.getWords();
-        ArrayList<String> lengths = new ArrayList<>();
-        ArrayList<String> counts = new ArrayList<>();
+            // creating ArrayLists
+            String[] bufArr = bulk.getWords();
+            ArrayList<String> lengths = new ArrayList<>();
+            ArrayList<String> counts = new ArrayList<>();
 
-        // counting all words with respect to length
-        for (int i = 0, j = 0, cou = 0; j < bufArr.length; i++) {
+            // counting all words with respect to length
+            for (int i = 0, j = 0, cou = 0; j < bufArr.length; i++) {
 
-            // i is for length's and counts' length
-            // j is for traversing through bufArr
-            // cou is for counting elements of respective length
+                // i is for length's and counts' length
+                // j is for traversing through bufArr
+                // cou is for counting elements of respective length
 
-            // initiation
-            lengths.add(i, Integer.toString(bufArr[j].length()));
-            cou++;
-            j++;
-
-            while ( j < bufArr.length &&
-                    (bufArr[j].length() == Integer.parseInt(lengths.get(i)))) {
+                // initiation
+                lengths.add(i, Integer.toString(bufArr[j].length()));
                 cou++;
                 j++;
-            } // of while loop
 
-            counts.add(i, Integer.toString(cou));
-            cou = 0;
+                while ( j < bufArr.length &&
+                        (bufArr[j].length() == Integer.parseInt(lengths.get(i)))) {
+                    cou++;
+                    j++;
+                } // of while loop
 
-        } // end of for loop
+                counts.add(i, Integer.toString(cou));
+                cou = 0;
 
-        String[] len_final = lengths.toArray(new String[0]);
-        String[] cou_final = counts.toArray(new String[0]);
+            } // end of for loop
 
-        // try-with-resources helps
-        try (FileWriter fw = new FileWriter("./" + limit + "_list.csv")) {
+            String[] len_final = lengths.toArray(new String[0]);
+            String[] cou_final = counts.toArray(new String[0]);
 
-            for (int i = 0; i < len_final.length; i++)
-                fw.write(len_final[i] + "," + cou_final[i] + "\n");
+            // try-with-resources helps
+            try (FileWriter fw = new FileWriter("./" + limit + "_list.csv")) {
 
-            System.out.println("file printed successfully!\n" +
-                    "Total words: " + bufArr.length);
+                for (int i = 0; i < len_final.length; i++)
+                    fw.write(len_final[i] + "," + cou_final[i] + "\n");
 
-        } catch (IOException e) {
+                System.out.println("file printed successfully!\n" +
+                        "Total words: " + bufArr.length);
+
+            } catch (IOException e) {
+                System.out.println("Something went wrong: " + e.getMessage());
+            }
+        } catch (OutOfMemoryError | NumberFormatException e) {
             System.out.println("Something went wrong: " + e.getMessage());
         }
 
