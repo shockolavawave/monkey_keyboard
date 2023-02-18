@@ -2,13 +2,13 @@ import java.util.*;
 
 public class monkeyGo {
 
-    private int length;
+    private long length;
     private String rawString;
     private String[] words;
 
 
-    public int getLength() {    return length;    }
-    public void setLength(int length) {     this.length = length;    }
+    public long getLength() {    return length;    }
+    public void setLength(long length) {     this.length = length;    }
     ///
     public String getRawString() {      return rawString;    }
     public void setRawString(String rawString) {    this.rawString = rawString;    }
@@ -16,7 +16,7 @@ public class monkeyGo {
     public String[] getWords() {    return words;    }
     public void setWords(String[] words) {      this.words = words;    }
 
-    public monkeyGo(int len) throws OutOfMemoryError {
+    public monkeyGo(long len) throws OutOfMemoryError {
 
         this.setLength(len);
 
@@ -27,7 +27,7 @@ public class monkeyGo {
         StringBuilder buf = new StringBuilder();
 
         // getting raw string
-        for (int i = 0; i < this.getLength(); i++)
+        for (long i = 0; i < this.getLength(); i++)
             buf.append(letters[rd.nextInt(27)]);
 
         this.setRawString(buf.toString());

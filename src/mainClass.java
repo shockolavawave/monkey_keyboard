@@ -12,10 +12,10 @@ public class mainClass {
         System.out.println("why so Zipfy?");
 
         // initialising
-        int limit = 0;
+        long limit = 0;
         try {
             System.out.print("Enter character limit (min. 100) : ");
-            limit = scObj.nextInt();
+            limit = scObj.nextLong();
 
             if (limit < 100)
                 throw new Exception("number too short");
